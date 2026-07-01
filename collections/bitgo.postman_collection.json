@@ -1,0 +1,437 @@
+{
+  "info": {
+    "name": "BitGo Platform API",
+    "description": "Representative Postman collection for the BitGo Platform REST API v2 (institutional digital-asset custody). Set the `baseUrl` variable to https://app.bitgo.com/api/v2 (or your BitGo Express endpoint) and `bearerToken` to a BitGo access token.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://app.bitgo.com/api/v2", "type": "string" },
+    { "key": "coin", "value": "btc", "type": "string" },
+    { "key": "walletId", "value": "", "type": "string" },
+    { "key": "transferId", "value": "", "type": "string" },
+    { "key": "enterpriseId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Wallets",
+      "item": [
+        {
+          "name": "List wallets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet"],
+              "variable": [{ "key": "coin", "value": "{{coin}}" }]
+            },
+            "description": "List the wallets of the authenticated user for a given coin."
+          },
+          "response": []
+        },
+        {
+          "name": "Generate wallet",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"My Wallet\",\n  \"passphrase\": \"<walletPassphrase>\",\n  \"enterprise\": \"{{enterpriseId}}\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet"],
+              "variable": [{ "key": "coin", "value": "{{coin}}" }]
+            },
+            "description": "Create a new multi-signature wallet for a coin, typically via BitGo Express."
+          },
+          "response": []
+        },
+        {
+          "name": "Get wallet",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "Retrieve a single wallet by its identifier."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Addresses",
+      "item": [
+        {
+          "name": "List wallet addresses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/address",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "address"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "List the receive addresses that belong to a wallet."
+          },
+          "response": []
+        },
+        {
+          "name": "Create wallet address",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chain\": 0,\n  \"label\": \"deposit\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/address",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "address"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "Generate a new receive address on a wallet."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Send coins",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"<destinationAddress>\",\n  \"amount\": \"100000\",\n  \"walletPassphrase\": \"<walletPassphrase>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/sendcoins",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "sendcoins"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "Build, sign, and send a transaction to a single recipient (via BitGo Express)."
+          },
+          "response": []
+        },
+        {
+          "name": "Send many",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    { \"address\": \"<address1>\", \"amount\": \"50000\" },\n    { \"address\": \"<address2>\", \"amount\": \"50000\" }\n  ],\n  \"walletPassphrase\": \"<walletPassphrase>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/sendmany",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "sendmany"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "Build, sign, and send a single transaction with multiple recipients."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Transfers",
+      "item": [
+        {
+          "name": "List transfers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/transfer",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "transfer"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "List the transfers for a wallet."
+          },
+          "response": []
+        },
+        {
+          "name": "Get transfer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/transfer/:transferId",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "transfer", ":transferId"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" },
+                { "key": "transferId", "value": "{{transferId}}" }
+              ]
+            },
+            "description": "Retrieve a single transfer by its identifier."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Keychains",
+      "item": [
+        {
+          "name": "List keychains",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/:coin/key",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "key"],
+              "variable": [{ "key": "coin", "value": "{{coin}}" }]
+            },
+            "description": "List the keychains associated with the authenticated user for a coin."
+          },
+          "response": []
+        },
+        {
+          "name": "Add keychain",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pub\": \"<publicKey>\",\n  \"source\": \"backup\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:coin/key",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "key"],
+              "variable": [{ "key": "coin", "value": "{{coin}}" }]
+            },
+            "description": "Register a keychain by its public key and, optionally, encrypted private-key material."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List wallet webhooks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/webhooks",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "webhooks"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "List the webhooks configured on a wallet."
+          },
+          "response": []
+        },
+        {
+          "name": "Add wallet webhook",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"transfer\",\n  \"url\": \"https://example.com/bitgo-webhook\",\n  \"numConfirmations\": 1\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/webhooks",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "webhooks"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "Add a webhook to a wallet for transfer, transaction, pendingapproval, and address_confirmation events."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Policies",
+      "item": [
+        {
+          "name": "Update wallet policy",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": {\n    \"type\": \"update\",\n    \"rule\": {\n      \"id\": \"velocity-1\",\n      \"type\": \"velocityLimit\",\n      \"condition\": { \"amountString\": \"1000000000\", \"timeWindow\": 86400 },\n      \"action\": { \"type\": \"getApproval\" }\n    }\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/policy",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "policy"],
+              "variable": [
+                { "key": "coin", "value": "{{coin}}" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "Add, update, or remove a spending policy rule on a wallet."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Staking",
+      "item": [
+        {
+          "name": "Create staking request",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"32000000000000000000\",\n  \"type\": \"STAKE\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/staking/requests",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "staking", "requests"],
+              "variable": [
+                { "key": "coin", "value": "eth" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "Create a stake or unstake request for a supported proof-of-stake asset."
+          },
+          "response": []
+        },
+        {
+          "name": "List staking requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/:coin/wallet/:walletId/staking/requests",
+              "host": ["{{baseUrl}}"],
+              "path": [":coin", "wallet", ":walletId", "staking", "requests"],
+              "variable": [
+                { "key": "coin", "value": "eth" },
+                { "key": "walletId", "value": "{{walletId}}" }
+              ]
+            },
+            "description": "List staking and unstaking requests for a wallet."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Trading",
+      "item": [
+        {
+          "name": "List settlements",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/trading/settlements?enterpriseId={{enterpriseId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["trading", "settlements"],
+              "query": [{ "key": "enterpriseId", "value": "{{enterpriseId}}" }]
+            },
+            "description": "List off-chain settlements executed over the BitGo Go Network."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Enterprise",
+      "item": [
+        {
+          "name": "List enterprises",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/enterprise",
+              "host": ["{{baseUrl}}"],
+              "path": ["enterprise"]
+            },
+            "description": "List the enterprises the authenticated user belongs to."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Get current user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["user", "me"]
+            },
+            "description": "Retrieve the profile of the currently authenticated user."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: BitGo
+providerId: bitgo
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Digital Assets
+- Custody
+- Wallets
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The BitGo Platform API applies per-access-token request rate limits. When a
+  client exceeds the allowance the API returns HTTP 429 (Too Many Requests).
+  BitGo does not publish a single fixed public number for all accounts; limits
+  are enforced per token and can be raised for enterprise customers under a
+  commercial agreement. Specific per-endpoint values are not reconciled in this
+  artifact.
+notes: >-
+  Verify current per-token and per-endpoint limits with BitGo during
+  reconciliation. Signing-heavy flows are generally run through a self-hosted
+  BitGo Express instance, which does not remove platform rate limits but does
+  keep key operations local.
+sources:
+- https://developers.bitgo.com/
+- https://developers.bitgo.com/guides/get-started
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Token
+  scope: token
+  metric: requests
+  limit: see provider documentation
+  notes: Per-access-token request throttling; exceeding it returns HTTP 429.
+- name: Enterprise Elevated Limits
+  scope: enterprise
+  metric: requests
+  limit: negotiated
+  notes: Higher throughput available to enterprise customers by agreement.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Express Proxy
+  description: Run BitGo Express for local signing; it proxies to the platform and is still subject to platform rate limits.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

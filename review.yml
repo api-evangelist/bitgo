@@ -1,0 +1,81 @@
+aid: bitgo
+name: BitGo
+review:
+  question: Does BitGo expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-01'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. BitGo's event delivery is push-based
+    HTTP webhooks (the platform POSTs event payloads to a customer-registered
+    callback URL), not a WebSocket or SSE stream, and no public streaming
+    transport is documented. Webhooks are modeled as REST endpoints in the
+    OpenAPI (add / list / remove wallet webhooks) rather than as an async
+    channel.
+findings:
+  summary: |
+    BitGo does not publish a documented public WebSocket API. The BitGo
+    Platform API v2 is a REST (HTTPS) API under
+    https://app.bitgo.com/api/v2 (with a self-hosted BitGo Express proxy
+    typically at http://localhost:3080/api/v2 for local signing).
+    Asynchronous notifications are delivered as outbound HTTP webhooks that
+    BitGo POSTs to a customer-supplied URL for events such as transfer,
+    transaction, pendingapproval, and address_confirmation. No realtime,
+    bidirectional WebSocket (ws:// or wss://) endpoint is documented in the
+    developer portal.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://app.bitgo.com/api/v2
+      documented: true
+    - protocol: REST
+      scheme: http
+      baseURL: http://localhost:3080/api/v2
+      note: Self-hosted BitGo Express signing proxy default endpoint.
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound HTTP callbacks POSTed by BitGo to a customer-registered URL. One-way, not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in BitGo's developer portal or API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://app.bitgo.com/api/v2/{coin}/wallet
+    - POST https://app.bitgo.com/api/v2/{coin}/wallet
+    - GET  https://app.bitgo.com/api/v2/{coin}/wallet/{walletId}
+    - GET  https://app.bitgo.com/api/v2/{coin}/wallet/{walletId}/address
+    - POST https://app.bitgo.com/api/v2/{coin}/wallet/{walletId}/address
+    - POST https://app.bitgo.com/api/v2/{coin}/wallet/{walletId}/sendcoins
+    - POST https://app.bitgo.com/api/v2/{coin}/wallet/{walletId}/sendmany
+    - GET  https://app.bitgo.com/api/v2/{coin}/wallet/{walletId}/transfer
+    - GET  https://app.bitgo.com/api/v2/{coin}/wallet/{walletId}/transfer/{transferId}
+    - GET  https://app.bitgo.com/api/v2/{coin}/key
+    - POST https://app.bitgo.com/api/v2/{coin}/key
+    - POST https://app.bitgo.com/api/v2/{coin}/wallet/{walletId}/webhooks
+    - PUT  https://app.bitgo.com/api/v2/{coin}/wallet/{walletId}/policy
+    - GET  https://app.bitgo.com/api/v2/enterprise
+    - GET  https://app.bitgo.com/api/v2/user/me
+sources:
+  - url: https://developers.bitgo.com/
+    type: Documentation
+    note: Developer portal; documents the REST Platform API v2 and BitGo Express. No WebSocket surface.
+  - url: https://developers.bitgo.com/api
+    type: APIReference
+    note: All documented endpoints are HTTPS REST under app.bitgo.com/api/v2.
+  - url: https://developers.bitgo.com/guides/get-started
+    type: Documentation
+    note: Getting-started guide describes Bearer access-token auth and the Express proxy for signing.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists and no SSE stream is documented.
+    Event delivery is one-way outbound HTTP webhooks, which are represented
+    as REST webhook-management endpoints in the OpenAPI. No AsyncAPI document
+    was authored.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

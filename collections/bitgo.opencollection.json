@@ -1,0 +1,385 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BitGo Platform API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Wallets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List wallets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path", "description": "The coin or token ticker." }
+            ]
+          },
+          "docs": "List the wallets of the authenticated user for a given coin."
+        },
+        {
+          "info": {
+            "name": "Generate wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path", "description": "The coin or token ticker." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a new multi-signature wallet for a coin, typically via BitGo Express."
+        },
+        {
+          "info": {
+            "name": "Get wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path", "description": "The coin or token ticker." },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ]
+          },
+          "docs": "Retrieve a single wallet by its identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List wallet addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/address",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ]
+          },
+          "docs": "List the receive addresses that belong to a wallet."
+        },
+        {
+          "info": {
+            "name": "Create wallet address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/address",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Generate a new receive address on a wallet."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send coins",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/sendcoins",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Build, sign, and send a transaction to a single recipient from a wallet (via BitGo Express)."
+        },
+        {
+          "info": {
+            "name": "Send many",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/sendmany",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Build, sign, and send a single transaction with multiple recipients."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transfers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/transfer",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ]
+          },
+          "docs": "List the transfers for a wallet."
+        },
+        {
+          "info": {
+            "name": "Get transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/transfer/:transferId",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." },
+              { "name": "transferId", "value": "", "type": "path", "description": "The transfer identifier." }
+            ]
+          },
+          "docs": "Retrieve a single transfer by its identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Keychains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List keychains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/key",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" }
+            ]
+          },
+          "docs": "List the keychains associated with the authenticated user for a coin."
+        },
+        {
+          "info": {
+            "name": "Add keychain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/key",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Register a keychain by its public key and, optionally, encrypted private-key material."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List wallet webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/webhooks",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ]
+          },
+          "docs": "List the webhooks configured on a wallet."
+        },
+        {
+          "info": {
+            "name": "Add wallet webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/webhooks",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Add a webhook to a wallet to receive HTTP callbacks for transfer, transaction, pendingapproval, and address_confirmation events."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update wallet policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/policy",
+            "params": [
+              { "name": "coin", "value": "btc", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Add, update, or remove a spending policy rule on a wallet (velocity limits, whitelists, approvals)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Staking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create staking request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/staking/requests",
+            "params": [
+              { "name": "coin", "value": "eth", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a stake or unstake request for a supported proof-of-stake asset from a wallet."
+        },
+        {
+          "info": {
+            "name": "List staking requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/staking/requests",
+            "params": [
+              { "name": "coin", "value": "eth", "type": "path" },
+              { "name": "walletId", "value": "", "type": "path", "description": "The wallet identifier." }
+            ]
+          },
+          "docs": "List staking and unstaking requests for a wallet."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Trading",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List settlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/trading/settlements",
+            "params": [
+              { "name": "enterpriseId", "value": "", "type": "query", "description": "The enterprise identifier." }
+            ]
+          },
+          "docs": "List off-chain settlements executed over the BitGo Go Network."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Enterprise",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List enterprises",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/enterprise"
+          },
+          "docs": "List the enterprises the authenticated user belongs to."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/user/me"
+          },
+          "docs": "Retrieve the profile of the currently authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

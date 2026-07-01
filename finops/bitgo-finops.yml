@@ -1,0 +1,115 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: BitGo
+providerId: bitgo
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Digital Assets
+- Custody
+- Wallets
+- Staking
+- Settlement
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of BitGo platform spend. BitGo bills on a blend of dimensions:
+  qualified-custody fees (basis points on assets under custody), per-wallet and
+  per-transaction platform fees on self-managed wallets, staking commission
+  taken as a percentage of rewards, and trading / settlement fees over the Go
+  Network. On-chain network (miner / gas) fees are passed through separately
+  from BitGo platform fees. Pricing is contractual, so cost management centers
+  on tracking transaction volume, custody balances, and staking rewards against
+  the negotiated agreement.
+notes: >-
+  BitGo does not publish public per-call rates; all figures are set by
+  agreement. Distinguish BitGo platform fees from pass-through blockchain
+  network fees when allocating cost. Verify against the customer's BitGo
+  agreement during reconciliation.
+sources:
+- https://www.bitgo.com/
+- https://developers.bitgo.com/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: BitGo
+serviceCategory: Digital Asset Custody and Infrastructure
+billingModel:
+  pricingCategory: Committed / Negotiated
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: BitGo Platform
+  ServiceCategory: Digital Asset Custody and Infrastructure
+  ProviderName: BitGo
+  PublisherName: BitGo
+  InvoiceIssuerName: BitGo
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Committed / Negotiated
+meters:
+- name: assets_under_custody
+  description: Digital assets held in qualified custody, billed as basis points per period.
+  unit: usd_value
+  aggregation: average
+  dimensions:
+  - enterprise
+  - coin
+- name: transactions
+  description: On-chain transactions built and co-signed via the platform, billed per transaction.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - enterprise
+  - wallet
+  - coin
+- name: network_fees_passthrough
+  description: Blockchain miner / gas fees passed through, separate from BitGo platform fees.
+  unit: usd_value
+  aggregation: sum
+  dimensions:
+  - wallet
+  - coin
+- name: staking_rewards
+  description: Staking rewards earned, against which BitGo takes a commission percentage.
+  unit: usd_value
+  aggregation: sum
+  dimensions:
+  - enterprise
+  - coin
+- name: settlements
+  description: Off-chain settlements executed over the Go Network, billed per settlement.
+  unit: settlements
+  aggregation: sum
+  dimensions:
+  - enterprise
+- name: wallets
+  description: Active wallets under management, where per-wallet platform fees apply.
+  unit: wallets
+  aggregation: max
+  dimensions:
+  - enterprise
+  - coin
+principles:
+- name: Visibility
+  description: Reconcile BitGo invoices against transaction, custody-balance, and staking-reward exports; separate platform fees from pass-through network fees.
+- name: Allocation
+  description: Tag wallets and access tokens per team / product and map to internal cost centers via the enterprise and wallet dimensions.
+- name: Optimization
+  description: Batch payouts with sendmany to reduce per-transaction overhead and network fees; consolidate wallets; size custody balances to the negotiated tier.
+- name: Accountability
+  description: Assign owners per enterprise / wallet and review transaction volume, custody basis-point fees, and staking commission monthly against the agreement.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,132 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: BitGo
+providerId: bitgo
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Digital Assets
+- Custody
+- Wallets
+- Staking
+- Settlement
+- Plans
+description: >-
+  BitGo does not publish public self-service, per-call API pricing. Access to
+  the BitGo Platform API is provisioned through a commercial relationship and
+  priced by negotiated agreement. Fees are typically a blend of custody /
+  assets-under-custody basis-point charges, per-wallet and per-transaction
+  fees, staking commission (a percentage of rewards), trading and settlement
+  fees over the Go Network, and enterprise platform / minimum fees. Concrete
+  rates are quoted by BitGo sales and vary by product (Trust custody vs.
+  self-managed wallets), asset mix, and volume.
+notes: >-
+  Pricing is sales-quoted and not publicly listed. The plan entries below are
+  structural placeholders describing the fee dimensions BitGo bills on, not
+  published rates. Confirm all figures directly with BitGo during
+  reconciliation.
+sources:
+- https://www.bitgo.com/
+- https://developers.bitgo.com/
+- https://www.bitgo.com/products/custody/
+plans:
+- id: bitgo-self-managed-wallets
+  name: Self-Managed Wallet Infrastructure
+  type: enterprise
+  description: >-
+    Programmatic multi-signature and TSS wallets where the customer holds keys
+    and BitGo provides the co-signing platform, API, and Express proxy. Billed
+    by negotiated platform, per-wallet, and per-transaction fees.
+  entries:
+  - label: Platform Access
+    name: platform_access
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: On-Chain Transaction Fee
+    name: transaction_fee
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales (per-transaction, excl. network/miner fees)
+    userMultiplied: false
+  elements:
+  - name: Wallets
+  - name: Addresses
+  - name: Transactions & Transfers
+  - name: Keychains
+  - name: Webhooks
+  - name: Wallet Policies
+  - name: BitGo Express
+- id: bitgo-custody
+  name: Qualified Custody (BitGo Trust)
+  type: enterprise
+  description: >-
+    Regulated qualified-custodian custody of digital assets, typically priced
+    as basis points on assets under custody with account minimums. Includes API
+    access to custodial wallets.
+  entries:
+  - label: Assets Under Custody
+    name: aum_bps
+    type: usage
+    metric: assets_under_custody
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (basis points on AUC, subject to minimums)
+    userMultiplied: false
+  elements:
+  - name: Custodial Wallets
+  - name: Qualified Custodian
+- id: bitgo-staking
+  name: Staking
+  type: enterprise
+  description: >-
+    Non-custodial and custodial staking of supported proof-of-stake assets,
+    priced as a commission percentage taken from staking rewards.
+  entries:
+  - label: Staking Commission
+    name: staking_commission
+    type: usage
+    metric: rewards
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales (percentage of rewards)
+    userMultiplied: false
+  elements:
+  - name: Staking
+- id: bitgo-trading-settlement
+  name: Trading & Settlement (Go Network)
+  type: enterprise
+  description: >-
+    Off-chain settlement and trading between counterparties over the BitGo Go
+    Network, priced by settlement / trading fees per negotiated agreement.
+  entries:
+  - label: Settlement Fee
+    name: settlement_fee
+    type: usage
+    metric: settlements
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Trading & Settlement
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
