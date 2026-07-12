@@ -248,6 +248,12 @@ apis:
   description: Manage enterprises (the top-level organizational account), list their
     wallets and users, and retrieve the authenticated user session and profile.
 common:
+- type: VulnerabilityDisclosure
+  url: security/bitgo-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/bitgo-domain-security.yml
+- type: Authentication
+  url: authentication/bitgo-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/BitGo
 - type: LinkedIn
@@ -262,6 +268,8 @@ common:
   url: rate-limits/bitgo-rate-limits.yml
 - type: FinOps
   url: finops/bitgo-finops.yml
+- url: https://www.bitgo.com/resources/blog/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

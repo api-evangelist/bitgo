@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bitgo-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: accessToken
+  type: http
+  scheme: bearer
+  bearerFormat: accessToken
+  description: 'BitGo access token passed as `Authorization: Bearer <token>`.'
+  sources:
+  - openapi/bitgo-openapi.yml
