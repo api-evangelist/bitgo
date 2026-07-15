@@ -248,6 +248,8 @@ apis:
   description: Manage enterprises (the top-level organizational account), list their
     wallets and users, and retrieve the authenticated user session and profile.
 common:
+- type: AgenticAccess
+  url: agentic-access/bitgo-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/bitgo-vulnerability-disclosure.yml
 - type: DomainSecurity
