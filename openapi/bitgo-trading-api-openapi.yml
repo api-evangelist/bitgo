@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: BitGo Platform Addresses Trading API
+  description: Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.
+  termsOfService: https://www.bitgo.com/legal/terms-of-service/
+  contact:
+    name: BitGo Support
+    url: https://developers.bitgo.com/
+  version: '2.0'
+servers:
+- url: https://app.bitgo.com/api/v2
+  description: BitGo production platform
+- url: https://app.bitgo-test.com/api/v2
+  description: BitGo test environment
+- url: http://localhost:3080/api/v2
+  description: Self-hosted BitGo Express signing proxy (default port)
+security:
+- accessToken: []
+tags:
+- name: Trading
+paths:
+  /trading/settlements:
+    get:
+      operationId: listSettlements
+      tags:
+      - Trading
+      summary: List settlements
+      description: List off-chain settlements executed over the BitGo Go Network for the authenticated enterprise's trading accounts.
+      parameters:
+      - name: enterpriseId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of settlements.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementList'
+components:
+  schemas:
+    SettlementList:
+      type: object
+      properties:
+        settlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Settlement'
+    Settlement:
+      type: object
+      properties:
+        id:
+          type: string
+        enterpriseId:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - completed
+          - canceled
+          - failed
+        trades:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+  securitySchemes:
+    accessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: accessToken
+      description: 'BitGo access token passed as `Authorization: Bearer <token>`.'

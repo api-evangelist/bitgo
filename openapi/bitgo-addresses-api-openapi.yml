@@ -1,0 +1,119 @@
+openapi: 3.0.1
+info:
+  title: BitGo Platform Addresses API
+  description: Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.
+  termsOfService: https://www.bitgo.com/legal/terms-of-service/
+  contact:
+    name: BitGo Support
+    url: https://developers.bitgo.com/
+  version: '2.0'
+servers:
+- url: https://app.bitgo.com/api/v2
+  description: BitGo production platform
+- url: https://app.bitgo-test.com/api/v2
+  description: BitGo test environment
+- url: http://localhost:3080/api/v2
+  description: Self-hosted BitGo Express signing proxy (default port)
+security:
+- accessToken: []
+tags:
+- name: Addresses
+paths:
+  /{coin}/wallet/{walletId}/address:
+    get:
+      operationId: listWalletAddresses
+      tags:
+      - Addresses
+      summary: List wallet addresses
+      description: List the receive addresses that belong to a wallet.
+      parameters:
+      - $ref: '#/components/parameters/coin'
+      - $ref: '#/components/parameters/walletId'
+      responses:
+        '200':
+          description: A paginated list of addresses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressList'
+    post:
+      operationId: createWalletAddress
+      tags:
+      - Addresses
+      summary: Create wallet address
+      description: Generate a new receive address on a wallet.
+      parameters:
+      - $ref: '#/components/parameters/coin'
+      - $ref: '#/components/parameters/walletId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAddressRequest'
+      responses:
+        '200':
+          description: The newly created address.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+components:
+  parameters:
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
+    coin:
+      name: coin
+      in: path
+      required: true
+      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
+      schema:
+        type: string
+      example: btc
+  schemas:
+    CreateAddressRequest:
+      type: object
+      properties:
+        chain:
+          type: integer
+          description: The address chain (for example 0 for external receive addresses).
+        label:
+          type: string
+    AddressList:
+      type: object
+      properties:
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        nextBatchPrevId:
+          type: string
+    Address:
+      type: object
+      properties:
+        id:
+          type: string
+        address:
+          type: string
+        chain:
+          type: integer
+        index:
+          type: integer
+        coin:
+          type: string
+        wallet:
+          type: string
+        label:
+          type: string
+      required:
+      - address
+  securitySchemes:
+    accessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: accessToken
+      description: 'BitGo access token passed as `Authorization: Bearer <token>`.'

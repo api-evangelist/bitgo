@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  title: BitGo Platform Addresses Transfers API
+  description: Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.
+  termsOfService: https://www.bitgo.com/legal/terms-of-service/
+  contact:
+    name: BitGo Support
+    url: https://developers.bitgo.com/
+  version: '2.0'
+servers:
+- url: https://app.bitgo.com/api/v2
+  description: BitGo production platform
+- url: https://app.bitgo-test.com/api/v2
+  description: BitGo test environment
+- url: http://localhost:3080/api/v2
+  description: Self-hosted BitGo Express signing proxy (default port)
+security:
+- accessToken: []
+tags:
+- name: Transfers
+paths:
+  /{coin}/wallet/{walletId}/transfer:
+    get:
+      operationId: listTransfers
+      tags:
+      - Transfers
+      summary: List transfers
+      description: List the transfers for a wallet. A transfer is BitGo's record of value moving into or out of a wallet, aggregating the underlying on-chain transaction.
+      parameters:
+      - $ref: '#/components/parameters/coin'
+      - $ref: '#/components/parameters/walletId'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: A paginated list of transfers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferList'
+  /{coin}/wallet/{walletId}/transfer/{transferId}:
+    get:
+      operationId: getTransfer
+      tags:
+      - Transfers
+      summary: Get transfer
+      description: Retrieve a single transfer by its identifier.
+      parameters:
+      - $ref: '#/components/parameters/coin'
+      - $ref: '#/components/parameters/walletId'
+      - name: transferId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested transfer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transfer'
+components:
+  parameters:
+    coin:
+      name: coin
+      in: path
+      required: true
+      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
+      schema:
+        type: string
+      example: btc
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
+  schemas:
+    TransferList:
+      type: object
+      properties:
+        transfers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transfer'
+        nextBatchPrevId:
+          type: string
+    Transfer:
+      type: object
+      properties:
+        id:
+          type: string
+        coin:
+          type: string
+        wallet:
+          type: string
+        txid:
+          type: string
+        valueString:
+          type: string
+        state:
+          type: string
+          enum:
+          - unconfirmed
+          - confirmed
+          - pendingApproval
+          - failed
+        type:
+          type: string
+          enum:
+          - send
+          - receive
+        confirmations:
+          type: integer
+      required:
+      - id
+  securitySchemes:
+    accessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: accessToken
+      description: 'BitGo access token passed as `Authorization: Bearer <token>`.'

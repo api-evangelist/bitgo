@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: BitGo Platform Addresses Transactions API
+  description: Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.
+  termsOfService: https://www.bitgo.com/legal/terms-of-service/
+  contact:
+    name: BitGo Support
+    url: https://developers.bitgo.com/
+  version: '2.0'
+servers:
+- url: https://app.bitgo.com/api/v2
+  description: BitGo production platform
+- url: https://app.bitgo-test.com/api/v2
+  description: BitGo test environment
+- url: http://localhost:3080/api/v2
+  description: Self-hosted BitGo Express signing proxy (default port)
+security:
+- accessToken: []
+tags:
+- name: Transactions
+paths:
+  /{coin}/wallet/{walletId}/sendcoins:
+    post:
+      operationId: sendCoins
+      tags:
+      - Transactions
+      summary: Send coins
+      description: Build, sign, and send a transaction to a single recipient from a wallet. Issued against BitGo Express (which signs locally using the wallet passphrase) and proxied to the platform for co-signing and broadcast.
+      parameters:
+      - $ref: '#/components/parameters/coin'
+      - $ref: '#/components/parameters/walletId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendCoinsRequest'
+      responses:
+        '200':
+          description: The sent transaction and resulting transfer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendTransactionResponse'
+  /{coin}/wallet/{walletId}/sendmany:
+    post:
+      operationId: sendMany
+      tags:
+      - Transactions
+      summary: Send many
+      description: Build, sign, and send a single transaction with multiple recipients (a batched payout) from a wallet.
+      parameters:
+      - $ref: '#/components/parameters/coin'
+      - $ref: '#/components/parameters/walletId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendManyRequest'
+      responses:
+        '200':
+          description: The sent transaction and resulting transfer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendTransactionResponse'
+components:
+  parameters:
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
+    coin:
+      name: coin
+      in: path
+      required: true
+      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
+      schema:
+        type: string
+      example: btc
+  schemas:
+    SendCoinsRequest:
+      type: object
+      properties:
+        address:
+          type: string
+          description: The destination address.
+        amount:
+          type: string
+          description: The amount to send as a base-unit string.
+        walletPassphrase:
+          type: string
+          description: Passphrase to decrypt the user key and sign locally (BitGo Express).
+        comment:
+          type: string
+      required:
+      - address
+      - amount
+      - walletPassphrase
+    Transfer:
+      type: object
+      properties:
+        id:
+          type: string
+        coin:
+          type: string
+        wallet:
+          type: string
+        txid:
+          type: string
+        valueString:
+          type: string
+        state:
+          type: string
+          enum:
+          - unconfirmed
+          - confirmed
+          - pendingApproval
+          - failed
+        type:
+          type: string
+          enum:
+          - send
+          - receive
+        confirmations:
+          type: integer
+      required:
+      - id
+    SendManyRequest:
+      type: object
+      properties:
+        recipients:
+          type: array
+          items:
+            type: object
+            properties:
+              address:
+                type: string
+              amount:
+                type: string
+        walletPassphrase:
+          type: string
+      required:
+      - recipients
+      - walletPassphrase
+    SendTransactionResponse:
+      type: object
+      properties:
+        transfer:
+          $ref: '#/components/schemas/Transfer'
+        txid:
+          type: string
+        tx:
+          type: string
+          description: The signed, serialized transaction hex.
+        status:
+          type: string
+  securitySchemes:
+    accessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: accessToken
+      description: 'BitGo access token passed as `Authorization: Bearer <token>`.'
