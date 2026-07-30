@@ -8,7 +8,20 @@ description: BitGo is an institutional digital-asset custody, wallet, staking, t
   advanced-cryptography wallets, addresses, keychains, transactions and transfers,
   webhooks, spending policies, staking, and Go Network off-chain settlement across
   hundreds of coins and tokens, with an optional self-hosted Express signing proxy.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bitgo.png
 tags:
 - Digital Assets
 - Custody
@@ -21,232 +34,424 @@ created: '2026-07-01'
 modified: '2026-07-01'
 specificationVersion: '0.19'
 apis:
-- aid: bitgo:bitgo-wallets-api
-  name: BitGo Wallets API
-  tags:
-  - Wallets
-  - Multi-Signature
-  - Custody
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/express.generatewallet
-  baseURL: https://app.bitgo.com/api/v2
-  properties:
-  - url: https://developers.bitgo.com/api
-    type: Documentation
-  - url: https://developers.bitgo.com/api/express.generatewallet
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Create, list, retrieve, and manage multi-signature and TSS wallets per
-    coin, including balances, wallet limits, and enterprise assignment across BitGo's
-    hot, cold, and custodial wallet types.
 - aid: bitgo:bitgo-addresses-api
   name: BitGo Addresses API
+  description: The Addresses API from BitGo — 1 operation(s) for addresses.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
   tags:
   - Addresses
-  - Deposits
-  - Wallets
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/express.createwalletaddress
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-addresses-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-enterprise-api
+  name: BitGo Enterprise API
+  description: The Enterprise API from BitGo — 1 operation(s) for enterprise.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
   baseURL: https://app.bitgo.com/api/v2
-  properties:
-  - url: https://developers.bitgo.com/api
-    type: Documentation
-  - url: https://developers.bitgo.com/api/express.createwalletaddress
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Generate and manage deposit addresses on a wallet, list existing addresses,
-    and retrieve address details and balances for receiving on-chain funds.
-- aid: bitgo:bitgo-transactions-transfers-api
-  name: BitGo Transactions & Transfers API
-  tags:
-  - Transactions
-  - Transfers
-  - Payments
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/express.sendcoins
-  baseURL: https://app.bitgo.com/api/v2
-  properties:
-  - url: https://developers.bitgo.com/api
-    type: Documentation
-  - url: https://developers.bitgo.com/api/express.sendcoins
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Build, sign, and send single or batched on-chain transactions, and list
-    and retrieve transfers (the BitGo record of a wallet's inbound and outbound value
-    movement) with confirmations, state, and metadata.
-- aid: bitgo:bitgo-keychains-api
-  name: BitGo Keychains & Keys API
-  tags:
-  - Keys
-  - Keychains
-  - Cryptography
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/v2.keychain.list
-  baseURL: https://app.bitgo.com/api/v2
-  properties:
-  - url: https://developers.bitgo.com/api
-    type: Documentation
-  - url: https://developers.bitgo.com/api/v2.keychain.list
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Create and manage the user, backup, and BitGo keychains that back multi-signature
-    wallets, including public-key registration and encrypted private-key material.
-- aid: bitgo:bitgo-webhooks-api
-  name: BitGo Webhooks API
-  tags:
-  - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/v2.wallet.addwebhook
-  baseURL: https://app.bitgo.com/api/v2
-  properties:
-  - url: https://developers.bitgo.com/api
-    type: Documentation
-  - url: https://developers.bitgo.com/api/v2.wallet.addwebhook
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Register, list, and remove wallet- and block-level webhooks that notify
-    your systems of transfers, confirmations, address confirmations, and pending approvals
-    via HTTP callbacks.
-- aid: bitgo:bitgo-wallet-policies-api
-  name: BitGo Wallet Policies API
-  tags:
-  - Policies
-  - Governance
-  - Approvals
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/v2.wallet.updatepolicy
-  baseURL: https://app.bitgo.com/api/v2
-  properties:
-  - url: https://developers.bitgo.com/api
-    type: Documentation
-  - url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Define and update on-wallet spending policies - velocity limits, per-transaction
-    caps, whitelists, and multi-user approval rules - and manage the pending-approval
-    workflow they trigger.
-- aid: bitgo:bitgo-staking-api
-  name: BitGo Staking API
-  tags:
-  - Staking
-  - Rewards
-  - Proof of Stake
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/staking.stake
-  baseURL: https://app.bitgo.com/api/v2
-  properties:
-  - url: https://developers.bitgo.com/api
-    type: Documentation
-  - url: https://developers.bitgo.com/api/staking.stake
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Programmatically stake and unstake supported proof-of-stake assets from
-    a wallet, list staking requests and delegations, and track rewards across supported
-    networks.
-- aid: bitgo:bitgo-trading-settlement-api
-  name: BitGo Trading & Settlement (Go Network) API
-  tags:
-  - Trading
-  - Settlement
-  - Go Network
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/trading.settlement.list
-  baseURL: https://app.bitgo.com/api/v2
-  properties:
-  - url: https://developers.bitgo.com/api
-    type: Documentation
-  - url: https://developers.bitgo.com/api/trading.settlement.list
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Access trading accounts and off-chain settlement over the BitGo Go Network,
-    listing settlements and trades between counterparties without moving assets on-chain.
-- aid: bitgo:bitgo-express-api
-  name: BitGo Express API
-  tags:
-  - Express
-  - Signing Proxy
-  - Self-Hosted
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/express
-  baseURL: http://localhost:3080/api/v2
-  properties:
-  - url: https://developers.bitgo.com/api/express
-    type: Documentation
-  - url: https://developers.bitgo.com/api/express
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Self-hosted REST proxy (a Docker container or Node service) that performs
-    local private-key handling and transaction signing so sensitive key material never
-    leaves your infrastructure while proxying calls to the BitGo platform.
-- aid: bitgo:bitgo-enterprise-users-api
-  name: BitGo Enterprise & Users API
   tags:
   - Enterprise
-  - Users
-  - Accounts
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.bitgo.com/api/v2.enterprise.list
-  baseURL: https://app.bitgo.com/api/v2
   properties:
-  - url: https://developers.bitgo.com/api
-    type: Documentation
-  - url: https://developers.bitgo.com/api/v2.enterprise.list
-    type: APIReference
-  - url: openapi/bitgo-openapi.yml
-    type: OpenAPI
-  - url: collections/bitgo.postman_collection.json
-    type: PostmanCollection
-  - url: collections/bitgo.opencollection.json
-    type: OpenCollection
-  description: Manage enterprises (the top-level organizational account), list their
-    wallets and users, and retrieve the authenticated user session and profile.
+  - type: OpenAPI
+    url: openapi/bitgo-enterprise-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-keychains-api
+  name: BitGo Keychains API
+  description: The Keychains API from BitGo — 1 operation(s) for keychains.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
+  tags:
+  - Keychains
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-keychains-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-policies-api
+  name: BitGo Policies API
+  description: The Policies API from BitGo — 1 operation(s) for policies.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
+  tags:
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-policies-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-staking-api
+  name: BitGo Staking API
+  description: The Staking API from BitGo — 1 operation(s) for staking.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
+  tags:
+  - Staking
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-staking-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-trading-api
+  name: BitGo Trading API
+  description: The Trading API from BitGo — 1 operation(s) for trading.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
+  tags:
+  - Trading
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-trading-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-transactions-api
+  name: BitGo Transactions API
+  description: The Transactions API from BitGo — 2 operation(s) for transactions.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-transfers-api
+  name: BitGo Transfers API
+  description: The Transfers API from BitGo — 2 operation(s) for transfers.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
+  tags:
+  - Transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-user-api
+  name: BitGo User API
+  description: The User API from BitGo — 1 operation(s) for user.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-user-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-wallets-api
+  name: BitGo Wallets API
+  description: The Wallets API from BitGo — 2 operation(s) for wallets.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
+  tags:
+  - Wallets
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-wallets-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
+- aid: bitgo:bitgo-webhooks-api
+  name: BitGo Webhooks API
+  description: The Webhooks API from BitGo — 1 operation(s) for webhooks.
+  humanURL: https://developers.bitgo.com/api/express.generatewallet
+  baseURL: https://app.bitgo.com/api/v2
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/bitgo-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.bitgo.com/api
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.generatewallet
+  - type: PostmanCollection
+    url: collections/bitgo.postman_collection.json
+  - type: OpenCollection
+    url: collections/bitgo.opencollection.json
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.createwalletaddress
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express.sendcoins
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.keychain.list
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.addwebhook
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.wallet.updatepolicy
+  - type: APIReference
+    url: https://developers.bitgo.com/api/staking.stake
+  - type: APIReference
+    url: https://developers.bitgo.com/api/trading.settlement.list
+  - type: Documentation
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/express
+  - type: APIReference
+    url: https://developers.bitgo.com/api/v2.enterprise.list
 common:
 - type: AgenticAccess
   url: agentic-access/bitgo-agentic-access.yml
