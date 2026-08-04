@@ -1,0 +1,34 @@
+{
+  "provider": "bitgo",
+  "sources": [
+    "bitgo-addresses-api-openapi.yml",
+    "bitgo-enterprise-api-openapi.yml",
+    "bitgo-keychains-api-openapi.yml",
+    "bitgo-policies-api-openapi.yml",
+    "bitgo-staking-api-openapi.yml",
+    "bitgo-trading-api-openapi.yml",
+    "bitgo-transactions-api-openapi.yml",
+    "bitgo-transfers-api-openapi.yml",
+    "bitgo-user-api-openapi.yml",
+    "bitgo-wallets-api-openapi.yml",
+    "bitgo-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "bitgo-addresses-api-openapi.yml",
+    "bitgo-enterprise-api-openapi.yml",
+    "bitgo-keychains-api-openapi.yml",
+    "bitgo-policies-api-openapi.yml",
+    "bitgo-staking-api-openapi.yml",
+    "bitgo-trading-api-openapi.yml",
+    "bitgo-transactions-api-openapi.yml",
+    "bitgo-transfers-api-openapi.yml",
+    "bitgo-user-api-openapi.yml",
+    "bitgo-wallets-api-openapi.yml",
+    "bitgo-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
