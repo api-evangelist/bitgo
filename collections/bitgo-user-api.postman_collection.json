@@ -1,0 +1,121 @@
+{
+  "item": [
+    {
+      "id": "3b5e08ab-4865-4319-b38e-33fb992330bf",
+      "name": "User",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78a06e23-ae4a-4ac3-94a7-2adbf3f23f02",
+          "name": "Get current user",
+          "request": {
+            "name": "Get current user",
+            "description": {
+              "content": "Retrieve the profile of the currently authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bda141e0-c9bf-4e31-9eaa-0699af2841d3",
+              "name": "The current user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"username\": \"string\",\n  \"name\": {\n    \"full\": \"string\"\n  },\n  \"email\": {\n    \"email\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.bitgo.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c18c4709-e8e7-4f7a-bb8a-7ff8f23773c7",
+    "name": "BitGo Platform Addresses User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.\n\nContact Support:\n Name: BitGo Support",
+      "type": "text/plain"
+    }
+  }
+}

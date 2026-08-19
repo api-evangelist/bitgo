@@ -1,0 +1,290 @@
+{
+  "item": [
+    {
+      "id": "7bfce21c-4dd5-4458-9807-87c926b599a4",
+      "name": "Webhooks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0291ac71-e25c-465e-ada0-67ca65d1975e",
+          "name": "List wallet webhooks",
+          "request": {
+            "name": "List wallet webhooks",
+            "description": {
+              "content": "List the webhooks configured on a wallet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":coin",
+                "wallet",
+                ":walletId",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coin",
+                  "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletId",
+                  "description": "(Required) The wallet identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d303bab-33d6-4376-9059-0e06e4093898",
+              "name": "A list of webhooks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":coin",
+                    "wallet",
+                    ":walletId",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coin",
+                      "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletId",
+                      "description": "(Required) The wallet identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhooks\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"address_confirmation\",\n      \"url\": \"string\",\n      \"numConfirmations\": 5026,\n      \"state\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"pendingapproval\",\n      \"url\": \"string\",\n      \"numConfirmations\": 1725,\n      \"state\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "855bd3e4-19d4-42d8-9651-6c930b69c47d",
+          "name": "Add wallet webhook",
+          "request": {
+            "name": "Add wallet webhook",
+            "description": {
+              "content": "Add a webhook to a wallet to receive HTTP callbacks for events such as `transfer`, `transaction`, `pendingapproval`, and `address_confirmation`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":coin",
+                "wallet",
+                ":walletId",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coin",
+                  "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletId",
+                  "description": "(Required) The wallet identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"numConfirmations\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8eff8ba1-eeb8-48d9-9ad8-14a0bcb9eb3f",
+              "name": "The created webhook.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":coin",
+                    "wallet",
+                    ":walletId",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coin",
+                      "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletId",
+                      "description": "(Required) The wallet identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"numConfirmations\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"transaction\",\n  \"url\": \"string\",\n  \"numConfirmations\": 1699,\n  \"state\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.bitgo.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8744dd27-d49d-4ffa-b465-9d9a4ed624e6",
+    "name": "BitGo Platform Addresses Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.\n\nContact Support:\n Name: BitGo Support",
+      "type": "text/plain"
+    }
+  }
+}

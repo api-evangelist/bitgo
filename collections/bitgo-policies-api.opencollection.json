@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BitGo Platform Addresses Policies API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update wallet policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/policy",
+            "params": [
+              {
+                "name": "coin",
+                "value": "btc",
+                "type": "path",
+                "description": "The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "The wallet identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add, update, or remove a spending policy rule on a wallet. Rules include velocity limits, per-transaction limits, address whitelists, and required multi-user approvals."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

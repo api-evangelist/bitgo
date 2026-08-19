@@ -1,0 +1,296 @@
+{
+  "item": [
+    {
+      "id": "c607c1b3-0d37-42fd-ac39-07fe8af7e3f2",
+      "name": "Transfers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0d1ddaa-df11-4cf4-913f-8f8a186ca9f9",
+          "name": "List transfers",
+          "request": {
+            "name": "List transfers",
+            "description": {
+              "content": "List the transfers for a wallet. A transfer is BitGo's record of value moving into or out of a wallet, aggregating the underlying on-chain transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":coin",
+                "wallet",
+                ":walletId",
+                "transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coin",
+                  "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletId",
+                  "description": "(Required) The wallet identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d475e2cf-3d97-4554-98be-df44cc28d2e3",
+              "name": "A paginated list of transfers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":coin",
+                    "wallet",
+                    ":walletId",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coin",
+                      "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletId",
+                      "description": "(Required) The wallet identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transfers\": [\n    {\n      \"id\": \"string\",\n      \"coin\": \"string\",\n      \"wallet\": \"string\",\n      \"txid\": \"string\",\n      \"valueString\": \"string\",\n      \"state\": \"failed\",\n      \"type\": \"send\",\n      \"confirmations\": 3458\n    },\n    {\n      \"id\": \"string\",\n      \"coin\": \"string\",\n      \"wallet\": \"string\",\n      \"txid\": \"string\",\n      \"valueString\": \"string\",\n      \"state\": \"unconfirmed\",\n      \"type\": \"receive\",\n      \"confirmations\": 5279\n    }\n  ],\n  \"nextBatchPrevId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a54dfd4a-fb5f-40b4-8b82-f15e64f4035c",
+          "name": "Get transfer",
+          "request": {
+            "name": "Get transfer",
+            "description": {
+              "content": "Retrieve a single transfer by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":coin",
+                "wallet",
+                ":walletId",
+                "transfer",
+                ":transferId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coin",
+                  "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletId",
+                  "description": "(Required) The wallet identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transferId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0ef8f27-a0c2-463a-bb15-e66ccc3f52d2",
+              "name": "The requested transfer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":coin",
+                    "wallet",
+                    ":walletId",
+                    "transfer",
+                    ":transferId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coin",
+                      "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletId",
+                      "description": "(Required) The wallet identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"coin\": \"string\",\n  \"wallet\": \"string\",\n  \"txid\": \"string\",\n  \"valueString\": \"string\",\n  \"state\": \"confirmed\",\n  \"type\": \"receive\",\n  \"confirmations\": 7978\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.bitgo.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dcbb8c2c-a635-4ace-ab83-d3943c6d477a",
+    "name": "BitGo Platform Addresses Transfers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.\n\nContact Support:\n Name: BitGo Support",
+      "type": "text/plain"
+    }
+  }
+}

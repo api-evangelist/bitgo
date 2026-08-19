@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BitGo Platform Addresses Enterprise API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enterprise",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List enterprises",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/enterprise"
+          },
+          "docs": "List the enterprises the authenticated user belongs to."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

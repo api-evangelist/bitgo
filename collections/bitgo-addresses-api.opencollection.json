@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BitGo Platform Addresses API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List wallet addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/address",
+            "params": [
+              {
+                "name": "coin",
+                "value": "btc",
+                "type": "path",
+                "description": "The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "The wallet identifier."
+              }
+            ]
+          },
+          "docs": "List the receive addresses that belong to a wallet."
+        },
+        {
+          "info": {
+            "name": "Create wallet address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/address",
+            "params": [
+              {
+                "name": "coin",
+                "value": "btc",
+                "type": "path",
+                "description": "The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "The wallet identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a new receive address on a wallet."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

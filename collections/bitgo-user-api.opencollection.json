@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BitGo Platform Addresses User API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/user/me"
+          },
+          "docs": "Retrieve the profile of the currently authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

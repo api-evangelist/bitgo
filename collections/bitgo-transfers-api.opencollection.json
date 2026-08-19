@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BitGo Platform Addresses Transfers API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transfers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/transfer",
+            "params": [
+              {
+                "name": "coin",
+                "value": "btc",
+                "type": "path",
+                "description": "The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "The wallet identifier."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List the transfers for a wallet. A transfer is BitGo's record of value moving into or out of a wallet, aggregating the underlying on-chain transaction."
+        },
+        {
+          "info": {
+            "name": "Get transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/transfer/:transferId",
+            "params": [
+              {
+                "name": "coin",
+                "value": "btc",
+                "type": "path",
+                "description": "The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "The wallet identifier."
+              },
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single transfer by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,290 @@
+{
+  "item": [
+    {
+      "id": "90bf4d94-f73f-421d-86e9-cbd4026ad2d7",
+      "name": "Addresses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1b21b58-f005-44a5-b89a-31b0442d3f12",
+          "name": "List wallet addresses",
+          "request": {
+            "name": "List wallet addresses",
+            "description": {
+              "content": "List the receive addresses that belong to a wallet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":coin",
+                "wallet",
+                ":walletId",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coin",
+                  "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletId",
+                  "description": "(Required) The wallet identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "125841c5-8bff-4c56-8f61-c280c6ccf218",
+              "name": "A paginated list of addresses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":coin",
+                    "wallet",
+                    ":walletId",
+                    "address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coin",
+                      "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletId",
+                      "description": "(Required) The wallet identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addresses\": [\n    {\n      \"address\": \"string\",\n      \"id\": \"string\",\n      \"chain\": 9059,\n      \"index\": 3758,\n      \"coin\": \"string\",\n      \"wallet\": \"string\",\n      \"label\": \"string\"\n    },\n    {\n      \"address\": \"string\",\n      \"id\": \"string\",\n      \"chain\": 1327,\n      \"index\": 4846,\n      \"coin\": \"string\",\n      \"wallet\": \"string\",\n      \"label\": \"string\"\n    }\n  ],\n  \"nextBatchPrevId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "952392c8-b293-46df-a0b8-cfdf75ce5092",
+          "name": "Create wallet address",
+          "request": {
+            "name": "Create wallet address",
+            "description": {
+              "content": "Generate a new receive address on a wallet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":coin",
+                "wallet",
+                ":walletId",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coin",
+                  "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletId",
+                  "description": "(Required) The wallet identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chain\": \"<integer>\",\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8c8e4ea-ab6d-45c2-b279-b4aef51e04ee",
+              "name": "The newly created address.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":coin",
+                    "wallet",
+                    ":walletId",
+                    "address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coin",
+                      "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletId",
+                      "description": "(Required) The wallet identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chain\": \"<integer>\",\n  \"label\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"id\": \"string\",\n  \"chain\": 992,\n  \"index\": 1809,\n  \"coin\": \"string\",\n  \"wallet\": \"string\",\n  \"label\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.bitgo.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eefc3ccb-b42b-45bf-95d1-82a2d972d834",
+    "name": "BitGo Platform Addresses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.\n\nContact Support:\n Name: BitGo Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BitGo Platform Addresses Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List wallet webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/webhooks",
+            "params": [
+              {
+                "name": "coin",
+                "value": "btc",
+                "type": "path",
+                "description": "The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "The wallet identifier."
+              }
+            ]
+          },
+          "docs": "List the webhooks configured on a wallet."
+        },
+        {
+          "info": {
+            "name": "Add wallet webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/wallet/:walletId/webhooks",
+            "params": [
+              {
+                "name": "coin",
+                "value": "btc",
+                "type": "path",
+                "description": "The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "The wallet identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a webhook to a wallet to receive HTTP callbacks for events such as `transfer`, `transaction`, `pendingapproval`, and `address_confirmation`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,254 @@
+{
+  "item": [
+    {
+      "id": "96c913c8-7574-410b-963b-8d023c3ef5a8",
+      "name": "Keychains",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "036a1e04-3ff4-4e29-862b-b4f9101e4558",
+          "name": "List keychains",
+          "request": {
+            "name": "List keychains",
+            "description": {
+              "content": "List the keychains associated with the authenticated user for a coin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":coin",
+                "key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coin",
+                  "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5ce7abc-2749-416f-ba7a-0ced5efd4483",
+              "name": "A paginated list of keychains.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":coin",
+                    "key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coin",
+                      "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"keys\": [\n    {\n      \"id\": \"string\",\n      \"pub\": \"string\",\n      \"encryptedPrv\": \"string\",\n      \"source\": \"bitgo\",\n      \"coinSpecific\": {\n        \"key_0\": 3768,\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"pub\": \"string\",\n      \"encryptedPrv\": \"string\",\n      \"source\": \"user\",\n      \"coinSpecific\": {\n        \"key_0\": false\n      }\n    }\n  ],\n  \"nextBatchPrevId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "680cc4d2-e04f-411b-b929-d503204f8b5d",
+          "name": "Add keychain",
+          "request": {
+            "name": "Add keychain",
+            "description": {
+              "content": "Register a keychain (user, backup, or BitGo) by its public key and, optionally, encrypted private-key material.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":coin",
+                "key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coin",
+                  "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pub\": \"<string>\",\n  \"encryptedPrv\": \"<string>\",\n  \"source\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a6225cae-8030-4c8e-854f-e069eb69f1ba",
+              "name": "The created keychain.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":coin",
+                    "key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coin",
+                      "description": "(Required) The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pub\": \"<string>\",\n  \"encryptedPrv\": \"<string>\",\n  \"source\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"pub\": \"string\",\n  \"encryptedPrv\": \"string\",\n  \"source\": \"bitgo\",\n  \"coinSpecific\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.bitgo.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6e51fff8-894e-4f82-96ea-17edf5bfb893",
+    "name": "BitGo Platform Addresses Keychains API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.\n\nContact Support:\n Name: BitGo Support",
+      "type": "text/plain"
+    }
+  }
+}

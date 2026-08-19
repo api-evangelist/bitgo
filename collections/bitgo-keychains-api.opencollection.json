@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BitGo Platform Addresses Keychains API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Keychains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List keychains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/:coin/key",
+            "params": [
+              {
+                "name": "coin",
+                "value": "btc",
+                "type": "path",
+                "description": "The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+              }
+            ]
+          },
+          "docs": "List the keychains associated with the authenticated user for a coin."
+        },
+        {
+          "info": {
+            "name": "Add keychain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.bitgo.com/api/v2/:coin/key",
+            "params": [
+              {
+                "name": "coin",
+                "value": "btc",
+                "type": "path",
+                "description": "The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a keychain (user, backup, or BitGo) by its public key and, optionally, encrypted private-key material."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

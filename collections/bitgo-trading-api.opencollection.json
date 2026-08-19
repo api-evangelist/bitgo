@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BitGo Platform Addresses Trading API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trading",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List settlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.bitgo.com/api/v2/trading/settlements",
+            "params": [
+              {
+                "name": "enterpriseId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List off-chain settlements executed over the BitGo Go Network for the authenticated enterprise's trading accounts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
