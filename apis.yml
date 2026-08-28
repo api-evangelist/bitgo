@@ -8,6 +8,18 @@ description: BitGo is an institutional digital-asset custody, wallet, staking, t
   advanced-cryptography wallets, addresses, keychains, transactions and transfers,
   webhooks, spending policies, staking, and Go Network off-chain settlement across
   hundreds of coins and tokens, with an optional self-hosted Express signing proxy.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
