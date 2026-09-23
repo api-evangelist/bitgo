@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: BitGo Platform Addresses Keychains API
-  description: Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.
+  title: BitGo Platform Keychains API
+  description: Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody.
   termsOfService: https://www.bitgo.com/legal/terms-of-service/
   contact:
     name: BitGo Support
@@ -56,16 +56,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/Keychain'
 components:
-  parameters:
-    coin:
-      name: coin
-      in: path
-      required: true
-      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
-      schema:
-        type: string
-      example: btc
   schemas:
+    CreateKeychainRequest:
+      type: object
+      properties:
+        pub:
+          type: string
+        encryptedPrv:
+          type: string
+        source:
+          type: string
+      required:
+      - pub
+    KeychainList:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/Keychain'
+        nextBatchPrevId:
+          type: string
     Keychain:
       type: object
       properties:
@@ -89,26 +100,15 @@ components:
       required:
       - id
       - pub
-    KeychainList:
-      type: object
-      properties:
-        keys:
-          type: array
-          items:
-            $ref: '#/components/schemas/Keychain'
-        nextBatchPrevId:
-          type: string
-    CreateKeychainRequest:
-      type: object
-      properties:
-        pub:
-          type: string
-        encryptedPrv:
-          type: string
-        source:
-          type: string
-      required:
-      - pub
+  parameters:
+    coin:
+      name: coin
+      in: path
+      required: true
+      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
+      schema:
+        type: string
+      example: btc
   securitySchemes:
     accessToken:
       type: http

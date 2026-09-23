@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: BitGo Platform Addresses Trading API
-  description: Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody. Covers wallets, addresses, transactions and transfers, keychains, webhooks, wallet policies, staking, trading and settlement over the Go Network, and enterprise / user surfaces. Most endpoints are namespaced under a coin (for example `btc`, `eth`, `hteth`) via the `{coin}` path parameter. Authentication uses a Bearer access token. Transaction-signing operations that require private-key material are typically issued against a self-hosted BitGo Express proxy.
+  title: BitGo Platform Trading API
+  description: Representative specification of the BitGo Platform REST API v2 for institutional digital-asset custody.
   termsOfService: https://www.bitgo.com/legal/terms-of-service/
   contact:
     name: BitGo Support
@@ -41,13 +41,6 @@ paths:
                 $ref: '#/components/schemas/SettlementList'
 components:
   schemas:
-    SettlementList:
-      type: object
-      properties:
-        settlements:
-          type: array
-          items:
-            $ref: '#/components/schemas/Settlement'
     Settlement:
       type: object
       properties:
@@ -67,6 +60,13 @@ components:
           items:
             type: object
             additionalProperties: true
+    SettlementList:
+      type: object
+      properties:
+        settlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Settlement'
   securitySchemes:
     accessToken:
       type: http
