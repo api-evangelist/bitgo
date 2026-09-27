@@ -57,17 +57,6 @@ paths:
                 $ref: '#/components/schemas/Keychain'
 components:
   schemas:
-    CreateKeychainRequest:
-      type: object
-      properties:
-        pub:
-          type: string
-        encryptedPrv:
-          type: string
-        source:
-          type: string
-      required:
-      - pub
     KeychainList:
       type: object
       properties:
@@ -99,6 +88,17 @@ components:
           additionalProperties: true
       required:
       - id
+      - pub
+    CreateKeychainRequest:
+      type: object
+      properties:
+        pub:
+          type: string
+        encryptedPrv:
+          type: string
+        source:
+          type: string
+      required:
       - pub
   parameters:
     coin:

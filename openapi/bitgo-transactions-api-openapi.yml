@@ -67,35 +67,6 @@ paths:
                 $ref: '#/components/schemas/SendTransactionResponse'
 components:
   schemas:
-    SendTransactionResponse:
-      type: object
-      properties:
-        transfer:
-          $ref: '#/components/schemas/Transfer'
-        txid:
-          type: string
-        tx:
-          type: string
-          description: The signed, serialized transaction hex.
-        status:
-          type: string
-    SendManyRequest:
-      type: object
-      properties:
-        recipients:
-          type: array
-          items:
-            type: object
-            properties:
-              address:
-                type: string
-              amount:
-                type: string
-        walletPassphrase:
-          type: string
-      required:
-      - recipients
-      - walletPassphrase
     SendCoinsRequest:
       type: object
       properties:
@@ -113,6 +84,23 @@ components:
       required:
       - address
       - amount
+      - walletPassphrase
+    SendManyRequest:
+      type: object
+      properties:
+        recipients:
+          type: array
+          items:
+            type: object
+            properties:
+              address:
+                type: string
+              amount:
+                type: string
+        walletPassphrase:
+          type: string
+      required:
+      - recipients
       - walletPassphrase
     Transfer:
       type: object
@@ -143,6 +131,18 @@ components:
           type: integer
       required:
       - id
+    SendTransactionResponse:
+      type: object
+      properties:
+        transfer:
+          $ref: '#/components/schemas/Transfer'
+        txid:
+          type: string
+        tx:
+          type: string
+          description: The signed, serialized transaction hex.
+        status:
+          type: string
   parameters:
     coin:
       name: coin

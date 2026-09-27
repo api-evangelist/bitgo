@@ -65,6 +65,13 @@ paths:
                 $ref: '#/components/schemas/Transfer'
 components:
   parameters:
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
     coin:
       name: coin
       in: path
@@ -73,14 +80,16 @@ components:
       schema:
         type: string
       example: btc
-    walletId:
-      name: walletId
-      in: path
-      required: true
-      description: The wallet identifier.
-      schema:
-        type: string
   schemas:
+    TransferList:
+      type: object
+      properties:
+        transfers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transfer'
+        nextBatchPrevId:
+          type: string
     Transfer:
       type: object
       properties:
@@ -110,15 +119,6 @@ components:
           type: integer
       required:
       - id
-    TransferList:
-      type: object
-      properties:
-        transfers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transfer'
-        nextBatchPrevId:
-          type: string
   securitySchemes:
     accessToken:
       type: http

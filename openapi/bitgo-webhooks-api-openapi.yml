@@ -60,6 +60,28 @@ paths:
                 $ref: '#/components/schemas/Webhook'
 components:
   schemas:
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - transfer
+          - transaction
+          - pendingapproval
+          - address_confirmation
+        url:
+          type: string
+        numConfirmations:
+          type: integer
+        state:
+          type: string
+      required:
+      - id
+      - type
+      - url
     WebhookList:
       type: object
       properties:
@@ -84,28 +106,6 @@ components:
           type: integer
           default: 0
       required:
-      - type
-      - url
-    Webhook:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - transfer
-          - transaction
-          - pendingapproval
-          - address_confirmation
-        url:
-          type: string
-        numConfirmations:
-          type: integer
-        state:
-          type: string
-      required:
-      - id
       - type
       - url
   parameters:

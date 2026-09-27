@@ -35,13 +35,6 @@ paths:
                 $ref: '#/components/schemas/EnterpriseList'
 components:
   schemas:
-    EnterpriseList:
-      type: object
-      properties:
-        enterprises:
-          type: array
-          items:
-            $ref: '#/components/schemas/Enterprise'
     Enterprise:
       type: object
       properties:
@@ -49,6 +42,13 @@ components:
           type: string
         name:
           type: string
+    EnterpriseList:
+      type: object
+      properties:
+        enterprises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Enterprise'
   securitySchemes:
     accessToken:
       type: http
