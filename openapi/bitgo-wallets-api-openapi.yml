@@ -85,23 +85,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/Wallet'
 components:
-  parameters:
-    coin:
-      name: coin
-      in: path
-      required: true
-      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
-      schema:
-        type: string
-      example: btc
-    walletId:
-      name: walletId
-      in: path
-      required: true
-      description: The wallet identifier.
-      schema:
-        type: string
   schemas:
+    GenerateWalletRequest:
+      type: object
+      properties:
+        label:
+          type: string
+        passphrase:
+          type: string
+          description: Passphrase used to encrypt the user keychain private key.
+        enterprise:
+          type: string
+        backupXpub:
+          type: string
+          description: Optional user-provided backup public key.
+      required:
+      - label
+      - passphrase
     WalletList:
       type: object
       properties:
@@ -148,22 +148,22 @@ components:
       required:
       - id
       - coin
-    GenerateWalletRequest:
-      type: object
-      properties:
-        label:
-          type: string
-        passphrase:
-          type: string
-          description: Passphrase used to encrypt the user keychain private key.
-        enterprise:
-          type: string
-        backupXpub:
-          type: string
-          description: Optional user-provided backup public key.
-      required:
-      - label
-      - passphrase
+  parameters:
+    coin:
+      name: coin
+      in: path
+      required: true
+      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
+      schema:
+        type: string
+      example: btc
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
   securitySchemes:
     accessToken:
       type: http

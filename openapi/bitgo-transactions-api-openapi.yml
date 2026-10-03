@@ -67,41 +67,6 @@ paths:
                 $ref: '#/components/schemas/SendTransactionResponse'
 components:
   schemas:
-    SendCoinsRequest:
-      type: object
-      properties:
-        address:
-          type: string
-          description: The destination address.
-        amount:
-          type: string
-          description: The amount to send as a base-unit string.
-        walletPassphrase:
-          type: string
-          description: Passphrase to decrypt the user key and sign locally (BitGo Express).
-        comment:
-          type: string
-      required:
-      - address
-      - amount
-      - walletPassphrase
-    SendManyRequest:
-      type: object
-      properties:
-        recipients:
-          type: array
-          items:
-            type: object
-            properties:
-              address:
-                type: string
-              amount:
-                type: string
-        walletPassphrase:
-          type: string
-      required:
-      - recipients
-      - walletPassphrase
     Transfer:
       type: object
       properties:
@@ -131,6 +96,24 @@ components:
           type: integer
       required:
       - id
+    SendCoinsRequest:
+      type: object
+      properties:
+        address:
+          type: string
+          description: The destination address.
+        amount:
+          type: string
+          description: The amount to send as a base-unit string.
+        walletPassphrase:
+          type: string
+          description: Passphrase to decrypt the user key and sign locally (BitGo Express).
+        comment:
+          type: string
+      required:
+      - address
+      - amount
+      - walletPassphrase
     SendTransactionResponse:
       type: object
       properties:
@@ -143,6 +126,23 @@ components:
           description: The signed, serialized transaction hex.
         status:
           type: string
+    SendManyRequest:
+      type: object
+      properties:
+        recipients:
+          type: array
+          items:
+            type: object
+            properties:
+              address:
+                type: string
+              amount:
+                type: string
+        walletPassphrase:
+          type: string
+      required:
+      - recipients
+      - walletPassphrase
   parameters:
     coin:
       name: coin

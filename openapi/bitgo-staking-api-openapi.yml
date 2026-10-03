@@ -75,13 +75,6 @@ components:
       required:
       - amount
       - type
-    StakingRequestList:
-      type: object
-      properties:
-        requests:
-          type: array
-          items:
-            $ref: '#/components/schemas/StakingRequest'
     StakingRequest:
       type: object
       properties:
@@ -103,6 +96,13 @@ components:
           - DELIVERED
           - PROCESSED
           - FAILED
+    StakingRequestList:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/StakingRequest'
   parameters:
     coin:
       name: coin

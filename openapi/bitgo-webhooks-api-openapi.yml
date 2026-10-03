@@ -60,6 +60,13 @@ paths:
                 $ref: '#/components/schemas/Webhook'
 components:
   schemas:
+    WebhookList:
+      type: object
+      properties:
+        webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
     Webhook:
       type: object
       properties:
@@ -82,13 +89,6 @@ components:
       - id
       - type
       - url
-    WebhookList:
-      type: object
-      properties:
-        webhooks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Webhook'
     CreateWebhookRequest:
       type: object
       properties:

@@ -41,6 +41,13 @@ paths:
                 $ref: '#/components/schemas/SettlementList'
 components:
   schemas:
+    SettlementList:
+      type: object
+      properties:
+        settlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Settlement'
     Settlement:
       type: object
       properties:
@@ -60,13 +67,6 @@ components:
           items:
             type: object
             additionalProperties: true
-    SettlementList:
-      type: object
-      properties:
-        settlements:
-          type: array
-          items:
-            $ref: '#/components/schemas/Settlement'
   securitySchemes:
     accessToken:
       type: http
