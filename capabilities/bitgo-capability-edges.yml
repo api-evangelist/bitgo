@@ -1,0 +1,27 @@
+slug: bitgo
+provider: BitGo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Webhooks
+  spec_file: bitgo-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: 'POST /{coin}/wallet/{walletId}/webhooks  addWalletWebhook  Add wallet webhook; schemas: WebhookList,
+    Webhook, CreateWebhookRequest'
+  reason: Operations create and list outbound webhook subscriptions that notify developer systems of wallet
+    events, which is exactly the lifecycle of outbound webhook/event subscriptions on a platform API.
+    Confidence held below 0.8 because only two CRUD-style operations are shown with no delivery-reliability
+    or event-schema surface.

@@ -470,6 +470,9 @@ apis:
   - type: APIReference
     url: https://developers.bitgo.com/api/v2.enterprise.list
 common:
+- type: CapabilityMap
+  url: capabilities/bitgo-capability-edges.yml
+  name: BitGo Business Capability Map
 - type: AgenticAccess
   url: agentic-access/bitgo-agentic-access.yml
 - type: VulnerabilityDisclosure
