@@ -60,6 +60,13 @@ paths:
                 $ref: '#/components/schemas/StakingRequestList'
 components:
   schemas:
+    StakingRequestList:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/StakingRequest'
     StakingRequestInput:
       type: object
       properties:
@@ -96,14 +103,14 @@ components:
           - DELIVERED
           - PROCESSED
           - FAILED
-    StakingRequestList:
-      type: object
-      properties:
-        requests:
-          type: array
-          items:
-            $ref: '#/components/schemas/StakingRequest'
   parameters:
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
     coin:
       name: coin
       in: path
@@ -112,13 +119,6 @@ components:
       schema:
         type: string
       example: btc
-    walletId:
-      name: walletId
-      in: path
-      required: true
-      description: The wallet identifier.
-      schema:
-        type: string
   securitySchemes:
     accessToken:
       type: http

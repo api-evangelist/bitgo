@@ -44,29 +44,22 @@ paths:
                 $ref: '#/components/schemas/Wallet'
 components:
   schemas:
-    PolicyRule:
+    UpdatePolicyRequest:
       type: object
       properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - velocityLimit
-          - coinAddressWhitelist
-          - transactionLimit
-          - webhook
-        condition:
-          type: object
-          additionalProperties: true
         action:
           type: object
           properties:
             type:
               type: string
               enum:
-              - deny
-              - getApproval
+              - getInfo
+              - update
+              - remove
+            rule:
+              $ref: '#/components/schemas/PolicyRule'
+      required:
+      - action
     Wallet:
       type: object
       properties:
@@ -104,23 +97,37 @@ components:
       required:
       - id
       - coin
-    UpdatePolicyRequest:
+    PolicyRule:
       type: object
       properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - velocityLimit
+          - coinAddressWhitelist
+          - transactionLimit
+          - webhook
+        condition:
+          type: object
+          additionalProperties: true
         action:
           type: object
           properties:
             type:
               type: string
               enum:
-              - getInfo
-              - update
-              - remove
-            rule:
-              $ref: '#/components/schemas/PolicyRule'
-      required:
-      - action
+              - deny
+              - getApproval
   parameters:
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
     coin:
       name: coin
       in: path
@@ -129,13 +136,6 @@ components:
       schema:
         type: string
       example: btc
-    walletId:
-      name: walletId
-      in: path
-      required: true
-      description: The wallet identifier.
-      schema:
-        type: string
   securitySchemes:
     accessToken:
       type: http

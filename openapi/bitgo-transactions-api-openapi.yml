@@ -67,6 +67,23 @@ paths:
                 $ref: '#/components/schemas/SendTransactionResponse'
 components:
   schemas:
+    SendManyRequest:
+      type: object
+      properties:
+        recipients:
+          type: array
+          items:
+            type: object
+            properties:
+              address:
+                type: string
+              amount:
+                type: string
+        walletPassphrase:
+          type: string
+      required:
+      - recipients
+      - walletPassphrase
     Transfer:
       type: object
       properties:
@@ -96,6 +113,18 @@ components:
           type: integer
       required:
       - id
+    SendTransactionResponse:
+      type: object
+      properties:
+        transfer:
+          $ref: '#/components/schemas/Transfer'
+        txid:
+          type: string
+        tx:
+          type: string
+          description: The signed, serialized transaction hex.
+        status:
+          type: string
     SendCoinsRequest:
       type: object
       properties:
@@ -114,36 +143,14 @@ components:
       - address
       - amount
       - walletPassphrase
-    SendTransactionResponse:
-      type: object
-      properties:
-        transfer:
-          $ref: '#/components/schemas/Transfer'
-        txid:
-          type: string
-        tx:
-          type: string
-          description: The signed, serialized transaction hex.
-        status:
-          type: string
-    SendManyRequest:
-      type: object
-      properties:
-        recipients:
-          type: array
-          items:
-            type: object
-            properties:
-              address:
-                type: string
-              amount:
-                type: string
-        walletPassphrase:
-          type: string
-      required:
-      - recipients
-      - walletPassphrase
   parameters:
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
     coin:
       name: coin
       in: path
@@ -152,13 +159,6 @@ components:
       schema:
         type: string
       example: btc
-    walletId:
-      name: walletId
-      in: path
-      required: true
-      description: The wallet identifier.
-      schema:
-        type: string
   securitySchemes:
     accessToken:
       type: http
