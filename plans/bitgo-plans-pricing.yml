@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-07-01 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-07-01'
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
@@ -130,3 +135,46 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - hybrid
+  units:
+  - negotiated
+  - transaction
+  plans:
+  - name: Self-Managed Wallet Infrastructure
+    access: enterprise
+    model: hybrid
+    model_how: derived
+    units:
+    - negotiated
+    - transaction
+    periods:
+    - month
+  - name: Qualified Custody (BitGo Trust)
+    access: enterprise
+    model: free
+    model_how: derived
+    units:
+    - other
+    periods:
+    - year
+  - name: Staking
+    access: enterprise
+    model: free
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Trading & Settlement (Go Network)
+    access: enterprise
+    model: free
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
