@@ -499,8 +499,6 @@ common:
   type: Blog
 - type: SpectralRules
   url: https://github.com/BitGo/BitGoJS/blob/25f9537315a45269f8d82d21d2fc6208f19c3fd7/modules/express/ruleset.yaml
-- type: SpectralRules
-  url: https://github.com/BitGo/advanced-wallets/blob/3750ac91da97d5fc74834a46c468513355dcb800/ruleset.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
