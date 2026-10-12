@@ -1,0 +1,33 @@
+edges:
+- partner_name: MiCA (EU)
+  partner: null
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv
+  contract_reference:
+    register: 'ESMA interim MiCA register: crypto-asset service providers (CASPS.csv)'
+    spec_file: null
+    role: authorised-casp
+    registered_name: BitGo Europe GmbH
+    register_id: 391200IJ3B1IP7993O16
+    competent_authority: Federal Financial Supervisory Authority (BaFin)
+    home_member_state: DE
+    authorised: 09/05/2025
+    services:
+    - a. providing custody and administration of crypto-assets on behalf of clients
+    - c. exchange of crypto-assets for funds
+    - d. exchange of crypto-assets for other crypto-assets
+    - e. execution of orders for crypto-assets on behalf of clients
+    - g. reception and transmission of orders for crypto-assets on behalf of clients
+    - j. providing transfer services for crypto-assets on behalf of clients
+    matched_domain: bitgo.de
+    detected_by: sweep-crypto.py
+    detected: '2026-10-13'
+  detected_by: sweep-crypto.py
+  first_seen: '2026-10-13'
+generated: '2026-10-13'
+method: searched
+checked:
+- https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv
