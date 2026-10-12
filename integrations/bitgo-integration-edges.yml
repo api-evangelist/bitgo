@@ -27,7 +27,28 @@ edges:
     detected: '2026-10-13'
   detected_by: sweep-crypto.py
   first_seen: '2026-10-13'
+- partner_name: NYDFS (New York)
+  partner: null
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.dfs.ny.gov/apps_and_licensing/virtual_currency_businesses
+  contract_reference:
+    register: NYDFS virtual currency licensees
+    spec_file: null
+    register_snapshot: https://web.archive.org/web/20261010154817/https://www.dfs.ny.gov/apps_and_licensing/virtual_currency_businesses
+    registered_name: BitGo New York Trust Company, LLC
+    role: limited-purpose-trust-charter
+    granted: 2021-03
+    evidence: https://www.bitgo.com/entities/bitgo-new-york-trust-company-llc.md
+    matched_by: verified-legal-name
+    detected_by: sweep-crypto.py
+    detected: '2026-10-13'
+  detected_by: sweep-crypto.py
+  first_seen: '2026-10-13'
 generated: '2026-10-13'
 method: searched
 checked:
+- https://www.dfs.ny.gov/apps_and_licensing/virtual_currency_businesses
 - https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv
