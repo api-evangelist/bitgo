@@ -66,23 +66,40 @@ paths:
               schema:
                 $ref: '#/components/schemas/SendTransactionResponse'
 components:
+  parameters:
+    coin:
+      name: coin
+      in: path
+      required: true
+      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
+      schema:
+        type: string
+      example: btc
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
   schemas:
-    SendManyRequest:
+    SendCoinsRequest:
       type: object
       properties:
-        recipients:
-          type: array
-          items:
-            type: object
-            properties:
-              address:
-                type: string
-              amount:
-                type: string
+        address:
+          type: string
+          description: The destination address.
+        amount:
+          type: string
+          description: The amount to send as a base-unit string.
         walletPassphrase:
           type: string
+          description: Passphrase to decrypt the user key and sign locally (BitGo Express).
+        comment:
+          type: string
       required:
-      - recipients
+      - address
+      - amount
       - walletPassphrase
     Transfer:
       type: object
@@ -113,6 +130,23 @@ components:
           type: integer
       required:
       - id
+    SendManyRequest:
+      type: object
+      properties:
+        recipients:
+          type: array
+          items:
+            type: object
+            properties:
+              address:
+                type: string
+              amount:
+                type: string
+        walletPassphrase:
+          type: string
+      required:
+      - recipients
+      - walletPassphrase
     SendTransactionResponse:
       type: object
       properties:
@@ -125,40 +159,6 @@ components:
           description: The signed, serialized transaction hex.
         status:
           type: string
-    SendCoinsRequest:
-      type: object
-      properties:
-        address:
-          type: string
-          description: The destination address.
-        amount:
-          type: string
-          description: The amount to send as a base-unit string.
-        walletPassphrase:
-          type: string
-          description: Passphrase to decrypt the user key and sign locally (BitGo Express).
-        comment:
-          type: string
-      required:
-      - address
-      - amount
-      - walletPassphrase
-  parameters:
-    walletId:
-      name: walletId
-      in: path
-      required: true
-      description: The wallet identifier.
-      schema:
-        type: string
-    coin:
-      name: coin
-      in: path
-      required: true
-      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
-      schema:
-        type: string
-      example: btc
   securitySchemes:
     accessToken:
       type: http

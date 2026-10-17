@@ -59,6 +59,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/StakingRequestList'
 components:
+  parameters:
+    coin:
+      name: coin
+      in: path
+      required: true
+      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
+      schema:
+        type: string
+      example: btc
+    walletId:
+      name: walletId
+      in: path
+      required: true
+      description: The wallet identifier.
+      schema:
+        type: string
   schemas:
     StakingRequestList:
       type: object
@@ -67,21 +83,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/StakingRequest'
-    StakingRequestInput:
-      type: object
-      properties:
-        amount:
-          type: string
-        type:
-          type: string
-          enum:
-          - STAKE
-          - UNSTAKE
-        clientId:
-          type: string
-      required:
-      - amount
-      - type
     StakingRequest:
       type: object
       properties:
@@ -103,22 +104,21 @@ components:
           - DELIVERED
           - PROCESSED
           - FAILED
-  parameters:
-    walletId:
-      name: walletId
-      in: path
-      required: true
-      description: The wallet identifier.
-      schema:
-        type: string
-    coin:
-      name: coin
-      in: path
-      required: true
-      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
-      schema:
-        type: string
-      example: btc
+    StakingRequestInput:
+      type: object
+      properties:
+        amount:
+          type: string
+        type:
+          type: string
+          enum:
+          - STAKE
+          - UNSTAKE
+        clientId:
+          type: string
+      required:
+      - amount
+      - type
   securitySchemes:
     accessToken:
       type: http

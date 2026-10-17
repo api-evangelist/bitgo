@@ -56,6 +56,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Keychain'
 components:
+  parameters:
+    coin:
+      name: coin
+      in: path
+      required: true
+      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
+      schema:
+        type: string
+      example: btc
   schemas:
     Keychain:
       type: object
@@ -100,15 +109,6 @@ components:
             $ref: '#/components/schemas/Keychain'
         nextBatchPrevId:
           type: string
-  parameters:
-    coin:
-      name: coin
-      in: path
-      required: true
-      description: The coin or token ticker (for example `btc`, `eth`, `hteth`, `sol`, `matic`). Testnet coins are prefixed with `t` (for example `tbtc`).
-      schema:
-        type: string
-      example: btc
   securitySchemes:
     accessToken:
       type: http
