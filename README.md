@@ -1,4 +1,4 @@
-# BitGo (bitgo)
+# BitGo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,246 +66,143 @@
 
 BitGo is an institutional digital-asset custody, wallet, staking, trading, and settlement infrastructure provider and qualified custodian. The BitGo Platform REST API v2 lets developers programmatically create and manage multi-signature and advanced-cryptography wallets, addresses, keychains, transactions and transfers, webhooks, spending policies, staking, and Go Network off-chain settlement across hundreds of coins and tokens, with an optional self-hosted Express signing proxy.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bitgo/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bitgo/refs/heads/main/apis.yml)
+**Areas:** Digital Assets · Custody · Wallets · Blockchain · Cryptocurrency · Staking · Settlement
 
-## Tags
+## BitGo on APIs.io
 
-- Digital Assets
-- Custody
-- Wallets
-- Blockchain
-- Crypto
-- Staking
-- Settlement
+Everything profiled for BitGo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bitgo/](https://apis.io/providers/bitgo/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (11)
 
-- **Created:** 2026-07-01
-- **Modified:** 2026-07-01
+- [BitGo Addresses API](https://apis.io/apis/bitgo/bitgo-addresses-api/) — The Addresses API from BitGo — 1 operation(s) for addresses.
+- [BitGo Enterprise API](https://apis.io/apis/bitgo/bitgo-enterprise-api/) — The Enterprise API from BitGo — 1 operation(s) for enterprise.
+- [BitGo Keychains API](https://apis.io/apis/bitgo/bitgo-keychains-api/) — The Keychains API from BitGo — 1 operation(s) for keychains.
+- [BitGo Policies API](https://apis.io/apis/bitgo/bitgo-policies-api/) — The Policies API from BitGo — 1 operation(s) for policies.
+- [BitGo Staking API](https://apis.io/apis/bitgo/bitgo-staking-api/) — The Staking API from BitGo — 1 operation(s) for staking.
+- [BitGo Trading API](https://apis.io/apis/bitgo/bitgo-trading-api/) — The Trading API from BitGo — 1 operation(s) for trading.
+- [BitGo Transactions API](https://apis.io/apis/bitgo/bitgo-transactions-api/) — The Transactions API from BitGo — 2 operation(s) for transactions.
+- [BitGo Transfers API](https://apis.io/apis/bitgo/bitgo-transfers-api/) — The Transfers API from BitGo — 2 operation(s) for transfers.
+- [BitGo User API](https://apis.io/apis/bitgo/bitgo-user-api/) — The User API from BitGo — 1 operation(s) for user.
+- [BitGo Wallets API](https://apis.io/apis/bitgo/bitgo-wallets-api/) — The Wallets API from BitGo — 2 operation(s) for wallets.
+- [BitGo Webhooks API](https://apis.io/apis/bitgo/bitgo-webhooks-api/) — The Webhooks API from BitGo — 1 operation(s) for webhooks.
 
-## APIs
+### Published properties
 
-### BitGo Wallets API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, list, retrieve, and manage multi-signature and TSS wallets per coin, including balances, wallet limits, and enterprise assignment across BitGo's hot, cold, and custodial wallet types.
+#### Agentic access (1)
 
-- **Human URL:** [https://developers.bitgo.com/api/express.generatewallet](https://developers.bitgo.com/api/express.generatewallet)
-- **Base URL:** `https://app.bitgo.com/api/v2`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Bitgo Agentic Access](https://apis.io/agentic-access/bitgo/bitgo-agentic-access/)
 
-- Wallets
-- Multi-Signature
-- Custody
+#### Collections (12)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://developers.bitgo.com/api)
-- [API Reference](https://developers.bitgo.com/api/express.generatewallet)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [BitGo Platform API](https://apis.io/collections/bitgo/open-bitgo/)
+- [BitGo Platform Addresses API](https://apis.io/collections/bitgo/open-bitgo-addresses-api/)
+- [BitGo Platform Addresses Enterprise API](https://apis.io/collections/bitgo/open-bitgo-enterprise-api/)
+- [BitGo Platform Addresses Keychains API](https://apis.io/collections/bitgo/open-bitgo-keychains-api/)
+- [BitGo Platform Addresses Policies API](https://apis.io/collections/bitgo/open-bitgo-policies-api/)
+- [BitGo Platform Addresses Staking API](https://apis.io/collections/bitgo/open-bitgo-staking-api/)
+- [BitGo Platform Addresses Trading API](https://apis.io/collections/bitgo/open-bitgo-trading-api/)
+- [BitGo Platform Addresses Transactions API](https://apis.io/collections/bitgo/open-bitgo-transactions-api/)
+- [BitGo Platform Addresses Transfers API](https://apis.io/collections/bitgo/open-bitgo-transfers-api/)
+- [BitGo Platform Addresses User API](https://apis.io/collections/bitgo/open-bitgo-user-api/)
+- [BitGo Platform Addresses Wallets API](https://apis.io/collections/bitgo/open-bitgo-wallets-api/)
+- [BitGo Platform Addresses Webhooks API](https://apis.io/collections/bitgo/open-bitgo-webhooks-api/)
 
-### BitGo Addresses API
+#### Governance rules (1)
 
-Generate and manage deposit addresses on a wallet, list existing addresses, and retrieve address details and balances for receiving on-chain funds.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://developers.bitgo.com/api/express.createwalletaddress](https://developers.bitgo.com/api/express.createwalletaddress)
-- **Base URL:** `https://app.bitgo.com/api/v2`
+- [BitGo — bitgojs rules](https://apis.io/rules/bitgo/bitgo-bitgojs-spectral-rules/)
 
-#### Tags
+#### Security (3)
 
-- Addresses
-- Deposits
-- Wallets
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Bitgo Authentication](https://apis.io/security/bitgo/bitgo-authentication/)
+- [Bitgo Domain Security](https://apis.io/security/bitgo/bitgo-domain-security/)
+- [Bitgo Vulnerability Disclosure](https://apis.io/security/bitgo/bitgo-vulnerability-disclosure/)
 
-- [Documentation](https://developers.bitgo.com/api)
-- [API Reference](https://developers.bitgo.com/api/express.createwalletaddress)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### BitGo Transactions & Transfers API
+Published plans, tiers and prices.
 
-Build, sign, and send single or batched on-chain transactions, and list and retrieve transfers (the BitGo record of a wallet's inbound and outbound value movement) with confirmations, state, and metadata.
+- [Bitgo Plans Pricing](https://apis.io/plans/bitgo/bitgo-plans-pricing/)
 
-- **Human URL:** [https://developers.bitgo.com/api/express.sendcoins](https://developers.bitgo.com/api/express.sendcoins)
-- **Base URL:** `https://app.bitgo.com/api/v2`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Transactions
-- Transfers
-- Payments
+- [Bitgo Rate Limits](https://apis.io/rate-limits/bitgo/bitgo-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://developers.bitgo.com/api)
-- [API Reference](https://developers.bitgo.com/api/express.sendcoins)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### BitGo Keychains & Keys API
+- [Bitgo Finops](https://apis.io/finops/bitgo/bitgo-finops/)
 
-Create and manage the user, backup, and BitGo keychains that back multi-signature wallets, including public-key registration and encrypted private-key material.
+## Where to find this API
 
-- **Human URL:** [https://developers.bitgo.com/api/v2.keychain.list](https://developers.bitgo.com/api/v2.keychain.list)
-- **Base URL:** `https://app.bitgo.com/api/v2`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Keys
-- Keychains
-- Cryptography
-
-#### Properties
-
-- [Documentation](https://developers.bitgo.com/api)
-- [API Reference](https://developers.bitgo.com/api/v2.keychain.list)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### BitGo Webhooks API
-
-Register, list, and remove wallet- and block-level webhooks that notify your systems of transfers, confirmations, address confirmations, and pending approvals via HTTP callbacks.
-
-- **Human URL:** [https://developers.bitgo.com/api/v2.wallet.addwebhook](https://developers.bitgo.com/api/v2.wallet.addwebhook)
-- **Base URL:** `https://app.bitgo.com/api/v2`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://developers.bitgo.com/api)
-- [API Reference](https://developers.bitgo.com/api/v2.wallet.addwebhook)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### BitGo Wallet Policies API
-
-Define and update on-wallet spending policies - velocity limits, per-transaction caps, whitelists, and multi-user approval rules - and manage the pending-approval workflow they trigger.
-
-- **Human URL:** [https://developers.bitgo.com/api/v2.wallet.updatepolicy](https://developers.bitgo.com/api/v2.wallet.updatepolicy)
-- **Base URL:** `https://app.bitgo.com/api/v2`
-
-#### Tags
-
-- Policies
-- Governance
-- Approvals
-
-#### Properties
-
-- [Documentation](https://developers.bitgo.com/api)
-- [API Reference](https://developers.bitgo.com/api/v2.wallet.updatepolicy)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### BitGo Staking API
-
-Programmatically stake and unstake supported proof-of-stake assets from a wallet, list staking requests and delegations, and track rewards across supported networks.
-
-- **Human URL:** [https://developers.bitgo.com/api/staking.stake](https://developers.bitgo.com/api/staking.stake)
-- **Base URL:** `https://app.bitgo.com/api/v2`
-
-#### Tags
-
-- Staking
-- Rewards
-- Proof of Stake
-
-#### Properties
-
-- [Documentation](https://developers.bitgo.com/api)
-- [API Reference](https://developers.bitgo.com/api/staking.stake)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### BitGo Trading & Settlement (Go Network) API
-
-Access trading accounts and off-chain settlement over the BitGo Go Network, listing settlements and trades between counterparties without moving assets on-chain.
-
-- **Human URL:** [https://developers.bitgo.com/api/trading.settlement.list](https://developers.bitgo.com/api/trading.settlement.list)
-- **Base URL:** `https://app.bitgo.com/api/v2`
-
-#### Tags
-
-- Trading
-- Settlement
-- Go Network
-
-#### Properties
-
-- [Documentation](https://developers.bitgo.com/api)
-- [API Reference](https://developers.bitgo.com/api/trading.settlement.list)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### BitGo Express API
-
-Self-hosted REST proxy (a Docker container or Node service) that performs local private-key handling and transaction signing so sensitive key material never leaves your infrastructure while proxying calls to the BitGo platform.
-
-- **Human URL:** [https://developers.bitgo.com/api/express](https://developers.bitgo.com/api/express)
-- **Base URL:** `http://localhost:3080/api/v2`
-
-#### Tags
-
-- Express
-- Signing Proxy
-- Self-Hosted
-
-#### Properties
-
-- [Documentation](https://developers.bitgo.com/api/express)
-- [API Reference](https://developers.bitgo.com/api/express)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### BitGo Enterprise & Users API
-
-Manage enterprises (the top-level organizational account), list their wallets and users, and retrieve the authenticated user session and profile.
-
-- **Human URL:** [https://developers.bitgo.com/api/v2.enterprise.list](https://developers.bitgo.com/api/v2.enterprise.list)
-- **Base URL:** `https://app.bitgo.com/api/v2`
-
-#### Tags
-
-- Enterprise
-- Users
-- Accounts
-
-#### Properties
-
-- [Documentation](https://developers.bitgo.com/api)
-- [API Reference](https://developers.bitgo.com/api/v2.enterprise.list)
-- [OpenAPI](openapi/bitgo-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitgo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitgo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/BitGo)
-- [LinkedIn](https://www.linkedin.com/company/bitgo)
 - [Website](https://www.bitgo.com/)
 - [Documentation](https://developers.bitgo.com/)
-- [Plans](plans/bitgo-plans-pricing.yml)
-- [Rate Limits](rate-limits/bitgo-rate-limits.yml)
-- [Fin Ops](finops/bitgo-finops.yml)
+- [Blog](https://www.bitgo.com/resources/blog/)
+- [GitHub](https://github.com/BitGo)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.9 |
+| Contract governance | 45.5 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.1** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bitgo/](https://apis.io/providers/bitgo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for BitGo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bitgo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
